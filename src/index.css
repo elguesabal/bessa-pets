@@ -1,0 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif; /* Defina a fonte desejada */
+  line-height: 1.5; /* Ajuste o espaçamento entre linhas */
+  background-color: #fff; /* Defina a cor de fundo */
+  color: #000; /* Defina a cor do texto */
+}
