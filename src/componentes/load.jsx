@@ -1,7 +1,7 @@
 export default function Load() {
 	return (
 		<div id="load" className="load fixed-top">
-			<p>Bessa pets</p>
+			<img src="./load.gif" alt="Imagem de load" />
 		</div>
 	);
 }

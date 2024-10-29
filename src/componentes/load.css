@@ -4,14 +4,13 @@
 	height: 100vh;
 }
 
-#load p {
+#load img {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	font-size: 5rem;
-	color: blue;
-	/* display: none; */
+	width: 90vw;
+	opacity: 0;
 	animation: load 2s infinite;
 }
 
@@ -24,5 +23,11 @@
 	}
 	100% {
 		opacity: 1;
+	}
+}
+
+@media (width > 1200px) {
+	#load img {
+		width: 30vw;
 	}
 }
