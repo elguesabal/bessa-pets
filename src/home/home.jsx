@@ -1,9 +1,17 @@
+import { useEffect, useState } from "react";
 import Header from "../componentes/header.jsx";
 import Promocoes from "../componentes/promocoes.jsx";
 import Card from "../componentes/card.jsx";
 import Footer from "../componentes/footer.jsx";
+import Load from "../componentes/load.jsx";
 
 export default function Home() {
+	const [load, setLoad] = useState(true);
+
+	useEffect(() => { setTimeout(() => setLoad(false), 1500) }, []);
+
+	if (load) return (<Load />);
+
 	return (
 		<>
 			<Header />
