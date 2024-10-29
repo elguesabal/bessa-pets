@@ -8,7 +8,7 @@ import Load from "../componentes/load.jsx";
 export default function Home() {
 	const [load, setLoad] = useState(true);
 
-	useEffect(() => { setTimeout(() => setLoad(false), 1500) }, []);
+	useEffect(() => { setTimeout(() => setLoad(false), Math.floor(Math.random() * 16) * 100 + 1500) }, []);
 
 	if (load) return (<Load />);
 
