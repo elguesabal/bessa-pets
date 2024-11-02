@@ -15,7 +15,7 @@ export default function Header() {
 							<a className="nav-link active" aria-current="page" href="#">Cães</a>
 						</li>
 						<li className="nav-item">
-							<a className="nav-link active" aria-current="page" href="#">Gatos</a>
+							<a className="nav-link active" aria-current="page" href="/felinos">Felinos</a>
 						</li>
 						<li className="nav-item">
 							<a className="nav-link active" aria-current="page" href="#">Peixes</a>
