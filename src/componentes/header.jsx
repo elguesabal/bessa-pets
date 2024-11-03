@@ -1,6 +1,6 @@
 export default function Header() {
 	return (
-		<nav className="navbar navbar-expand-lg bg-body-tertiary">
+		<nav className="navbar navbar-expand-lg bg-body-tertiary position-fixed top-0 z-1 w-100"> {/* ACHO Q POR Z INDEX NO HEADER PODE TER CONFLITO  COM ALGUMAS COISAS NO FUTURO (position-fixed top-0 z-1 w-100) */}
 			<div className="container-fluid">
 				<a className="navbar-brand" href="#">Bessa pets</a>
 				<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,7 +15,7 @@ export default function Header() {
 							<a className="nav-link active" aria-current="page" href="#">Cães</a>
 						</li>
 						<li className="nav-item">
-							<a className="nav-link active" aria-current="page" href="/felinos">Felinos</a>
+							<a className="nav-link active" aria-current="page" href="./felinos">Felinos</a>
 						</li>
 						<li className="nav-item">
 							<a className="nav-link active" aria-current="page" href="#">Peixes</a>
