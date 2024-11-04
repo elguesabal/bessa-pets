@@ -15,9 +15,7 @@ export default function Felinos() {
 	return (
 		<>
 			<Header />
-
 			{produtosFelinos.map((produto, i) => { return (<Card key={i} id={i} imagem={produto.imagem} titulo={produto.titulo} texto={produto.texto}/>) })}
-
 			<Footer />
 		</>
 	);
