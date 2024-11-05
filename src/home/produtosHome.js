@@ -10,3 +10,5 @@ export const produtoshome = [
 		texto: "texto 2"
 	}
 ];
+
+// NAO TA EM USO PQ FOI CRIADO UM ARQUIVO EM ./src/produtos.js Q ENGLOBA TODOS OS PRODUTOS
