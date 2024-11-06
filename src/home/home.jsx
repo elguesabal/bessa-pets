@@ -5,7 +5,6 @@ import Card from "../componentes/card.jsx";
 import Footer from "../componentes/footer.jsx";
 import Load from "../componentes/load.jsx";
 
-// import { produtoshome } from "./produtosHome.js";
 import { produtos } from "../produtos.js";
 
 export default function Home() {
@@ -21,7 +20,6 @@ export default function Home() {
 			<Promocoes />
 			<div className="container">
 				<div className="row d-flex justify-content-center">
-					{/* {produtoshome.map((produto, i) => { return (<Card key={i} id={i} imagem={produto.imagem} titulo={produto.titulo} texto={produto.texto}/>) })} */}
 					{produtos.map((produto, i) => { if (produto.home == true) return (<Card key={i} id={i} imagem={produto.imagem} titulo={produto.titulo} texto={produto.texto} preco={produto.preco}/>) })}
 				</div>
 			</div>

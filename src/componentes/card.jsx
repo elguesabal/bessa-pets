@@ -9,7 +9,7 @@ function addRemmoveCarrinho(id, titulo) {
 	if (element.classList.contains("btn-outline-success")) {
 		element.classList.remove("btn-outline-success");
 		element.classList.add("btn-outline-danger");
-		element.classList.remove("bi-cart-check");
+		element.classList.remove("bi-cart-plus");
 		element.classList.add("bi-cart-x");
 
 		carrinho = decodeURIComponent(url.searchParams.get("carrinho"));
@@ -24,7 +24,7 @@ function addRemmoveCarrinho(id, titulo) {
 		element.classList.remove("btn-outline-danger");
 		element.classList.add("btn-outline-success");
 		element.classList.remove("bi-cart-x");
-		element.classList.add("bi-cart-check");
+		element.classList.add("bi-cart-plus");
 
 		carrinho = JSON.parse(decodeURIComponent(url.searchParams.get("carrinho")));
 		carrinho.splice(carrinho.indexOf(titulo), 1);
@@ -34,7 +34,23 @@ function addRemmoveCarrinho(id, titulo) {
 			url.searchParams.delete("carrinho");
 		}
 	}
+
 	history.pushState({}, '', url.toString());
+}
+
+function classCarrinho(titulo) {
+	let carrinho = JSON.parse(decodeURIComponent(new URL(window.location.href).searchParams.get("carrinho")));
+
+	if (!carrinho) return ("btn btn-outline-success bi bi-cart-plus");
+	return ("btn " + ((carrinho.includes(titulo)) ? "btn-outline-danger" : "btn-outline-success") + " bi " + ((carrinho.includes(titulo)) ? "bi-cart-x" : "bi-cart-plus"))
+}
+
+function atualizarHeader() {
+	document.getElementById("home").href = window.location.origin + window.location.search
+	// document.getElementById("caes").href = window.location.origin + "/caes" + window.location.search
+	document.getElementById("felinos").href = window.location.origin + "/felinos" + window.location.search
+	// document.getElementById("peixes").href = window.location.origin + "/peixes" + window.location.search
+	// document.getElementById("roedores").href = window.location.origin + "/roedores" + window.location.search
 }
 
 export default function Card({ id, imagem, titulo, texto, preco }) {
@@ -54,7 +70,6 @@ export default function Card({ id, imagem, titulo, texto, preco }) {
 		if (new URLSearchParams(new URL(window.location.href).search).get("produto") == titulo) new Modal(document.getElementById("produto" + id)).show();
 	}, []);
 
-
 	return (
 		<>
 			<div className="col-md-4 col-sm-6 mb-3 d-flex justify-content-center">
@@ -63,7 +78,7 @@ export default function Card({ id, imagem, titulo, texto, preco }) {
 					<img src={imagem} className="card-img-top" alt="Imagem do produto" />
 					<div className="card-body d-flex justify-content-between align-items-center">
 						<span className="text-left">R${preco.toFixed(2).replace('.', ',')}</span>
-						<i className="btn btn-outline-success bi bi-cart-plus" id={"addCarrinho" + id} onClick={() => addRemmoveCarrinho("addCarrinho" + id, titulo)}></i>
+						<i className={classCarrinho(titulo)} id={"addCarrinho" + id} onClick={() => { addRemmoveCarrinho("addCarrinho" + id, titulo), atualizarHeader()}}></i>
 						<a href="#" className="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target={"#produto" + id}>Ver detalhes</a>
 					</div>
 				</div>
