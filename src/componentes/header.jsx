@@ -1,3 +1,20 @@
+function carrinho() {
+	let carrinho = JSON.parse(decodeURIComponent(new URL(window.location.href).searchParams.get("carrinho")));
+	let url = "https://wa.me/5521984025976?text=Olá, gostaria de mais informações desses produtos:";
+
+	if (!carrinho) {
+		alert("Carrinho vazio!");
+		return ;
+	}
+
+	carrinho.forEach((produto) => {
+		url += encodeURIComponent("\n\n") + produto + ":" + encodeURIComponent("\n");
+		url += window.location.origin + "?produto=" + encodeURIComponent(encodeURIComponent(produto));
+	});
+
+	window.open(url, "_blank");
+}
+
 export default function Header() {
 	return (
 		<nav className="navbar navbar-expand-lg bg-body-tertiary"> {/* ACHO Q POR Z INDEX NO HEADER PODE TER CONFLITO  COM ALGUMAS COISAS NO FUTURO (position-fixed top-0 z-1 w-100) */} {/* DESATIVA POR ENQUANTO */}
@@ -25,7 +42,7 @@ export default function Header() {
 						</li>
 					</ul>
 					<form className="d-flex" action="/pesquisa" method="get">
-						<i className="btn btn-outline-success bi bi-cart-check me-3"></i>
+						<i className="btn btn-outline-success bi bi-cart-check me-3" onClick={carrinho}></i>
 						<input className="form-control me-2" placeholder="Pesquisar" name="pesquisa"/>
 						<button className="btn btn-outline-success" type="submit">Pesquisar</button>
 					</form>

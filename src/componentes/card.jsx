@@ -4,62 +4,37 @@ import { useEffect } from "react";
 function addRemmoveCarrinho(id, titulo) {
 	const element = document.getElementById(id);
 	let url = new URL(window.location.href);
-	// console.log(url)
+	let carrinho = [];
 
 	if (element.classList.contains("btn-outline-success")) {
 		element.classList.remove("btn-outline-success");
 		element.classList.add("btn-outline-danger");
-		url.searchParams.append("carrinho", titulo);
-		// let carrinho = url.searchParams.getAll("carrinho");
-		// console.log(carrinho);
+		element.classList.remove("bi-cart-check");
+		element.classList.add("bi-cart-x");
 
-// new URL(window.location.href).searchParams.delete();
-
-		console.log(url.toString());
-		history.pushState({}, '', url.toString());
-
+		carrinho = decodeURIComponent(url.searchParams.get("carrinho"));
+		if (!carrinho || carrinho == "null") {
+			url.searchParams.set("carrinho", encodeURIComponent(JSON.stringify([titulo])));
+		} else if (carrinho && carrinho != "null") {
+			carrinho = JSON.parse(carrinho);
+			carrinho.push(titulo);
+			url.searchParams.set("carrinho", encodeURIComponent(JSON.stringify(carrinho)));
+		}
 	} else if (element.classList.contains("btn-outline-danger")) {
 		element.classList.remove("btn-outline-danger");
 		element.classList.add("btn-outline-success");
+		element.classList.remove("bi-cart-x");
+		element.classList.add("bi-cart-check");
 
-
-		// console.log("antes:", url.toString())
-		// // for (const [nome, valor] of url.searchParams) {
-		// // 	if (nome === "carrinho" && valor === titulo) {
-		// // 		// console.log("valor:", titulo)
-		// // 		// Se o nome e valor coincidirem, removemos o parâmetro
-		// // 		url.searchParams.delete("carrinho");
-		// // 		break;  // Após remover, podemos sair do loop
-		// // 	}
-		// // }
-		// url.searchParams.delete("carrinho");
-		// console.log("depois:", url.toString())
-
-
-
-
-
-// Acessa todos os parâmetros da URL
-let params = new URLSearchParams(url.search);
-
-// Percorre todos os parâmetros e remove os que correspondem ao valor
-for (let [chave, valor] of params.entries()) {
-  if (valor === titulo) {
-    params.delete(chave); // Remove o parâmetro com o valor específico
-  }
-}
-
-// Atualiza a URL com os parâmetros restantes
-url.search = params.toString();
-
-console.log(url.toString()); // Saída: https://www.example.com/?produto=123&produto=789
-
-
-
-
-
-		history.pushState({}, '', url.toString());
+		carrinho = JSON.parse(decodeURIComponent(url.searchParams.get("carrinho")));
+		carrinho.splice(carrinho.indexOf(titulo), 1);
+		if (carrinho.length) {
+			url.searchParams.set("carrinho", encodeURIComponent(JSON.stringify(carrinho)));
+		} else {
+			url.searchParams.delete("carrinho");
+		}
 	}
+	history.pushState({}, '', url.toString());
 }
 
 export default function Card({ id, imagem, titulo, texto, preco }) {
