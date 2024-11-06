@@ -1,6 +1,6 @@
 export default function Header() {
 	return (
-		<nav className="navbar navbar-expand-lg bg-body-tertiary position-fixed top-0 z-1 w-100"> {/* ACHO Q POR Z INDEX NO HEADER PODE TER CONFLITO  COM ALGUMAS COISAS NO FUTURO (position-fixed top-0 z-1 w-100) */}
+		<nav className="navbar navbar-expand-lg bg-body-tertiary"> {/* ACHO Q POR Z INDEX NO HEADER PODE TER CONFLITO  COM ALGUMAS COISAS NO FUTURO (position-fixed top-0 z-1 w-100) */} {/* DESATIVA POR ENQUANTO */}
 			<div className="container-fluid">
 				<a className="navbar-brand" href="#">Bessa pets</a>
 				<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,8 +24,9 @@ export default function Header() {
 							<a className="nav-link active" aria-current="page" href="#">Roedores</a>
 						</li>
 					</ul>
-					<form className="d-flex" role="search">
-						<input className="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search" />
+					<form className="d-flex" action="/pesquisa" method="get">
+						<i className="btn btn-outline-success bi bi-cart-check me-3"></i>
+						<input className="form-control me-2" placeholder="Pesquisar" name="pesquisa"/>
 						<button className="btn btn-outline-success" type="submit">Pesquisar</button>
 					</form>
 				</div>
