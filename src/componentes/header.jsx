@@ -10,7 +10,7 @@ function carrinho() {
 		return ;
 	}
 
-	carrinho.forEach((produto, i) => {
+	carrinho.forEach((produto) => {
 		url += encodeURIComponent("\n\n") + produto + ": R$";
 		for (let i = 0; i < produtos.length; i++) {
 			if (produtos[i].titulo === produto) {
