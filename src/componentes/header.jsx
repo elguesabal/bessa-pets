@@ -21,7 +21,7 @@ function carrinho() {
 		}
 		url += window.location.origin + "?produto=" + encodeURIComponent(encodeURIComponent(produto));
 	});
-	url += encodeURIComponent("\n\n") + "Clique aqui e volte a adicionar produtos ao seu carrinho:" + encodeURIComponent("\n") + window.location.href;
+	url += encodeURIComponent("\n\n") + "Clique aqui e volte a adicionar produtos ao seu carrinho:" + encodeURIComponent("\n") + encodeURIComponent(window.location.href);
 	url += encodeURIComponent("\n\n") + "Subtotal: R$" + subtotal.toFixed(2).replace('.', ',');
 
 	window.open(url, "_blank");
