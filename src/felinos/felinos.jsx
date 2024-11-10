@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Load from "../componentes/load.jsx";
+import Carrinho from "../componentes/carrinho.jsx";
 import Header from "../componentes/header.jsx";
 import Card from "../componentes/card.jsx";
 import Footer from "../componentes/footer.jsx";
@@ -14,6 +15,7 @@ export default function Felinos() {
 	if (load) return (<Load />);
 	return (
 		<>
+			<Carrinho />
 			<Header />
 			<div className="container">
 				<div className="row d-flex justify-content-center">

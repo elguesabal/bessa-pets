@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import Load from "../componentes/load.jsx";
+import Carrinho from "../componentes/carrinho.jsx";
 import Header from "../componentes/header.jsx";
 import Promocoes from "../componentes/promocoes.jsx";
 import Card from "../componentes/card.jsx";
 import Footer from "../componentes/footer.jsx";
-import Load from "../componentes/load.jsx";
 
 import { produtos } from "../produtos.js";
 
@@ -16,6 +17,7 @@ export default function Home() {
 
 	return (
 		<>
+			<Carrinho />
 			<Header />
 			<Promocoes />
 			<div className="container">

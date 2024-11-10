@@ -1,0 +1,31 @@
+#carrinho {
+	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: aqua;
+	z-index: 1;
+	bottom:	15%;
+	right: 0;
+	width: 20vw;
+	height: 10vh;
+	
+	/* border: 0; */
+	/* border:  1px solid #ff0909; */
+
+	border-top-left-radius: 30px;
+	border-bottom-left-radius: 30px;
+
+	cursor: pointer;
+}
+
+@media (width > 1200px) {
+	#carrinho {
+		width: 5vw;
+		height: 10vh;
+	}
+}
+
+.teste {
+	font-size: 8vw;
+}
