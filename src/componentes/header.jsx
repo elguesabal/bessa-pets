@@ -1,31 +1,31 @@
 import { produtos } from "../produtos.js";
 
-function carrinho() {
-	let carrinho = JSON.parse(decodeURIComponent(new URL(window.location.href).searchParams.get("carrinho")));
-	let url = "https://wa.me/5521984025976?text=Olá, gostaria de mais informações desses produtos:";
-	let subtotal = 0;
+// function carrinho() { // FOI TRANFERIDO PARA UM BOTAO LATERAL
+// 	let carrinho = JSON.parse(decodeURIComponent(new URL(window.location.href).searchParams.get("carrinho")));
+// 	let url = "https://wa.me/5521984025976?text=Olá, gostaria de mais informações desses produtos:";
+// 	let subtotal = 0;
 
-	if (!carrinho) {
-		alert("Carrinho vazio!");
-		return ;
-	}
+// 	if (!carrinho) {
+// 		alert("Carrinho vazio!");
+// 		return ;
+// 	}
 
-	carrinho.forEach((produto) => {
-		url += encodeURIComponent("\n\n") + produto + ": R$";
-		for (let i = 0; i < produtos.length; i++) {
-			if (produtos[i].titulo === produto) {
-				url += produtos[i].preco.toFixed(2).replace('.', ',') + encodeURIComponent("\n");
-				subtotal += produtos[i].preco;
-				break;
-			}
-		}
-		url += window.location.origin + "?produto=" + encodeURIComponent(encodeURIComponent(produto));
-	});
-	url += encodeURIComponent("\n\n") + "Clique aqui e volte a adicionar produtos ao seu carrinho:" + encodeURIComponent("\n") + encodeURIComponent(window.location.href);
-	url += encodeURIComponent("\n\n") + "Subtotal: R$" + subtotal.toFixed(2).replace('.', ',');
+// 	carrinho.forEach((produto) => {
+// 		url += encodeURIComponent("\n\n") + produto + ": R$";
+// 		for (let i = 0; i < produtos.length; i++) {
+// 			if (produtos[i].titulo === produto) {
+// 				url += produtos[i].preco.toFixed(2).replace('.', ',') + encodeURIComponent("\n");
+// 				subtotal += produtos[i].preco;
+// 				break;
+// 			}
+// 		}
+// 		url += window.location.origin + "?produto=" + encodeURIComponent(encodeURIComponent(produto));
+// 	});
+// 	url += encodeURIComponent("\n\n") + "Clique aqui e volte a adicionar produtos ao seu carrinho:" + encodeURIComponent("\n") + encodeURIComponent(window.location.href);
+// 	url += encodeURIComponent("\n\n") + "Subtotal: R$" + subtotal.toFixed(2).replace('.', ',');
 
-	window.open(url, "_blank");
-}
+// 	window.open(url, "_blank");
+// }
 
 function pesquisa(event) {
 	event.preventDefault();
@@ -66,7 +66,7 @@ export default function Header() {
 						</li>
 					</ul>
 					<form className="d-flex" onSubmit={pesquisa}> {/* action="/pesquisa" method="get" */}
-						<i className="btn btn-outline-success bi bi-cart-check me-3" onClick={carrinho}></i>
+						{/* <i className="btn btn-outline-success bi bi-cart-check me-3" onClick={carrinho}></i> */}
 						<input className="form-control me-2" placeholder="Pesquisar" name="pesquisa"/>
 						<button className="btn btn-outline-success" type="submit">Pesquisar</button>
 					</form>
