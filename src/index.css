@@ -10,3 +10,7 @@ body {
   background-color: #fff; /* Defina a cor de fundo */
   color: #000; /* Defina a cor do texto */
 }
+
+.cor { /* FEITO PARA TESTE RAPIDO */
+  background-color: red;
+}

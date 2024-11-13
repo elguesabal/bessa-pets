@@ -1,5 +1,7 @@
 import { Modal } from "bootstrap";
 import { useEffect } from "react";
+import { createRoot } from "react-dom/client";
+import { produtos } from "../produtos.js";
 
 function addRemmoveCarrinho(id, titulo) {
 	const element = document.getElementById(id);
@@ -53,6 +55,40 @@ function atualizarHeader() {
 	// document.getElementById("roedores").href = window.location.origin + "/roedores" + window.location.search
 }
 
+let carrinhListaProdutos = null;
+function atualizarCarrinho() {
+	let carrinho = JSON.parse(decodeURIComponent(new URL(window.location.href).searchParams.get("carrinho")));
+	let subtotal = 0;
+
+	if (!carrinhListaProdutos) carrinhListaProdutos = createRoot(document.getElementById("carrinhListaProdutos"));
+	if (!carrinho) {
+		carrinhListaProdutos.render(<></>);
+		document.getElementById("carrinhoSubtotalProdutos").innerText = "Subtotal: R$0,00";
+		return ;
+	}
+	carrinhListaProdutos.render(
+		<>
+			{carrinho.map((produto, i) => {
+				for (let j = 0; j < produtos.length; j++) {
+					if (produto === produtos[j].titulo) {
+						subtotal += produtos[j].preco;
+						return (
+							<li className="list-group-item d-flex bg-light" key={i}>
+								<a href={"/pesquisa?pesquisa=" + produtos[j].titulo} target="_blank" className="w-75">
+									<div className="fw-bold">{produtos[j].titulo}</div>
+									Valor: R${produtos[j].preco.toFixed(2).replace('.', ',')}
+								</a>
+								<div className="btn btn-outline-danger w-25 d-flex align-items-center justify-content-center" onClick={() => console.log("ainda fznd nada")}><i className="bi bi-cart-x"></i></div>
+							</li>
+						);
+					}
+				}
+			})}
+		</>
+	);
+	document.getElementById("carrinhoSubtotalProdutos").innerText = "Subtotal: R$" + subtotal.toFixed(2).replace('.', ',');
+}
+
 export default function Card({ id, imagem, titulo, texto, preco }) {
 	useEffect(() => {
 		// const url = new URL(window.location.href);
@@ -78,7 +114,7 @@ export default function Card({ id, imagem, titulo, texto, preco }) {
 					<img src={imagem} className="card-img-top" alt="Imagem do produto" />
 					<div className="card-body d-flex justify-content-between align-items-center">
 						<span className="text-left">R${preco.toFixed(2).replace('.', ',')}</span>
-						<i className={classCarrinho(titulo)} id={"addCarrinho" + id} onClick={() => { addRemmoveCarrinho("addCarrinho" + id, titulo), atualizarHeader()}}></i>
+						<i className={classCarrinho(titulo)} id={"addCarrinho" + id} onClick={() => { addRemmoveCarrinho("addCarrinho" + id, titulo), atualizarHeader(), atualizarCarrinho()}}></i>
 						<a href="#" className="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target={"#produto" + id}>Ver detalhes</a>
 					</div>
 				</div>

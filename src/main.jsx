@@ -12,12 +12,20 @@ import Home from './home/home.jsx';
 import Pesquisa from "./pesquisa/pesquisa.jsx";
 import Felinos from "./felinos/felinos.jsx";
 
+
+// import Teste from "./teste/teste.jsx";
+// import Teste2 from "./teste/teste2.jsx";
+
 createRoot(document.getElementById('root')).render(
 	<BrowserRouter>
 		<Routes>
 			<Route path="/" element={<Home />}/>
 			<Route path="/pesquisa" element={<Pesquisa />}/>
 			<Route path="/felinos" element={<Felinos />}/>
+
+
+			{/* <Route path="/teste" element={<Teste />}/>
+			<Route path="/teste2" element={<Teste2 />}/> */}
 		</Routes>
 	</BrowserRouter>
 );
