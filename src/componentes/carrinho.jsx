@@ -27,6 +27,49 @@ function carrinhoWhatsapp() {
 	window.open(url, "_blank");
 }
 
+function removeCarrinho() {
+	// const parent = document.getElementById("produtosPage");
+	// const childIds = Array.from(parent.querySelectorAll("*")).map(child => child.id).filter(id => id !== "");
+	// console.log(childIds)
+
+
+
+	// const parent = document.getElementById("produtosPage");
+    // const children = Array.from(document.getElementById("produtosPage").children); // Obtem os filhos diretos
+    const ids = Array.from(document.getElementById("produtosPage").children).map(child => child.id).filter(id => id); // Filtra apenas os IDs existentes
+    // console.log("IDs dos filhos diretos:", ids);
+	console.log(window.location.pathname)
+
+
+
+	produtos.forEach((produto, i) => {
+		for (let j = 0; j < produtos.length; j++) {
+			if (window.location.pathname === "/" && produtos[j].home === true && produtos[j].titulo === ) {
+
+				break;
+			}
+		}
+
+		if (window.location.pathname === "/" && produto.home === true) {
+			
+		}
+	});
+
+
+
+	// produtos.map((produto, i) => { // ASSIM Q TA SENDO FEITO NO HOME
+	// 	if (produto.home == true) {
+	// 		return (<Card key={i} id={i} imagem={produto.imagem} titulo={produto.titulo} texto={produto.texto} preco={produto.preco}/>);
+	// 	}
+	// })
+
+	// produtos.map((produto, i) => { // ASSIM Q TA SENDO FEITO NAS OUTRAS PAGINAS
+	// 	if (produto.secao === "felinos") {
+	// 		return (<Card key={i} id={i} imagem={produto.imagem} titulo={produto.titulo} texto={produto.texto} preco={produto.preco}/>);
+	// 	}
+	// })
+}
+
 export default function Carrinho() {
 	let carrinho = JSON.parse(decodeURIComponent(new URL(window.location.href).searchParams.get("carrinho")));
 	let subtotal = 0;
@@ -53,7 +96,7 @@ export default function Carrinho() {
 											<div className="fw-bold">{produtos[j].titulo}</div>
 											Valor: R${produtos[j].preco.toFixed(2).replace('.', ',')}
 										</a>
-										<div className="btn btn-outline-danger w-25 d-flex align-items-center justify-content-center" onClick={() => console.log("ainda fznd nada")}><i className="bi bi-cart-x"></i></div>
+										<div className="btn btn-outline-danger w-25 d-flex align-items-center justify-content-center" onClick={removeCarrinho}><i className="bi bi-cart-x"></i></div>
 									</li>
 								);
 							}

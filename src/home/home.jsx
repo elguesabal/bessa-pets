@@ -21,7 +21,7 @@ export default function Home() {
 			<Header />
 			<Promocoes />
 			<div className="container">
-				<div className="row d-flex justify-content-center">
+				<div className="row d-flex justify-content-center" id="produtosPage">
 					{produtos.map((produto, i) => { if (produto.home == true) return (<Card key={i} id={i} imagem={produto.imagem} titulo={produto.titulo} texto={produto.texto} preco={produto.preco}/>) })}
 				</div>
 			</div>
