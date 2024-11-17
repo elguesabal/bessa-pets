@@ -27,49 +27,30 @@ function carrinhoWhatsapp() {
 	window.open(url, "_blank");
 }
 
-function removeCarrinho() {
-	// const parent = document.getElementById("produtosPage");
-	// const childIds = Array.from(parent.querySelectorAll("*")).map(child => child.id).filter(id => id !== "");
-	// console.log(childIds)
-
-
-
-	// const parent = document.getElementById("produtosPage");
-    // const children = Array.from(document.getElementById("produtosPage").children); // Obtem os filhos diretos
-    const ids = Array.from(document.getElementById("produtosPage").children).map(child => child.id).filter(id => id); // Filtra apenas os IDs existentes
-    // console.log("IDs dos filhos diretos:", ids);
-	// console.log(window.location.pathname)
+function removeCarrinho(produto) { // "addCarrinho" + id
+    const ids = Array.from(document.getElementById("produtosPage").children).map(child => child.id).filter(id => id);
+    console.log("IDs dos filhos diretos:", ids);
 	// console.log("teste:", document.getElementById("tituloCarrinho0").textContent)
+	// console.log("aaaaa:", document.getElementById("produto0").firstChild.firstChild.firstChild.firstChild.textContent);
 
-	let elemento = 0;
-	produtos.forEach((produto, i) => {
-		if (window.location.pathname === "/" && produto.home === true) {
-			for (let j = 0; j < ) {
-				if (produto.titulo === document.getElementById("tituloCarrinho" + i).textContent) {
-console.log("removendo carrinho:", document.getElementById("tituloCarrinho" + i).textContent) // AKI EU COMEVEI UM RESULTADO MAS VOU TER Q CONTINUAR MAIS TARDE
-					return ;
-				}
-			}
-		} else if (window.location.pathname === "/pesquisa") {
+	ids.forEach((id) => {
+		// console.log("produto:", document.getElementById("produto" + i).firstChild.firstChild.firstChild.firstChild.textContent);
 
-		} else {
 
-		}
+		// console.log(document.getElementById(id).firstChild.firstChild.firstChild.firstChild.textContent)
+		console.log(document.getElementById(id))
+		// if (produto === document.getElementById(id).firstChild.firstChild.firstChild.firstChild.textContent) {
+			// console.log("tem q mudar o card:", id)
+			// document.getElementById(id).classList.remove("btn-outline-danger");
+			// document.getElementById(id).classList.add("btn-outline-success");
+
+
+			// document.getElementById("addCarrinho" + 0).classList.remove("btn-outline-danger");
+			// document.getElementById("addCarrinho" + 0).classList.add("btn-outline-success");
+			// return;
+		// }
 	});
 
-
-
-	// produtos.map((produto, i) => { // ASSIM Q TA SENDO FEITO NO HOME
-	// 	if (produto.home == true) {
-	// 		return (<Card key={i} id={i} imagem={produto.imagem} titulo={produto.titulo} texto={produto.texto} preco={produto.preco}/>);
-	// 	}
-	// })
-
-	// produtos.map((produto, i) => { // ASSIM Q TA SENDO FEITO NAS OUTRAS PAGINAS
-	// 	if (produto.secao === "felinos") {
-	// 		return (<Card key={i} id={i} imagem={produto.imagem} titulo={produto.titulo} texto={produto.texto} preco={produto.preco}/>);
-	// 	}
-	// })
 }
 
 export default function Carrinho() {
@@ -87,7 +68,7 @@ export default function Carrinho() {
 					<h5 className="offcanvas-title" id="offcanvasRightLabel">Carrinho</h5>
 					<button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 				</div>
-				<ol className="list-group offcanvas-body" id="carrinhListaProdutos">
+				<ol className="list-group offcanvas-body" id="carrinhoListaProdutos">
 					{(!carrinho) ? <></> : carrinho.map((produto, i) => {
 						for (let j = 0; j < produtos.length; j++) {
 							if (produto === produtos[j].titulo) {
@@ -98,7 +79,7 @@ export default function Carrinho() {
 											<div className="fw-bold" id={"tituloCarrinho" + i}>{produtos[j].titulo}</div>
 											Valor: R${produtos[j].preco.toFixed(2).replace('.', ',')}
 										</a>
-										<div className="btn btn-outline-danger w-25 d-flex align-items-center justify-content-center" onClick={removeCarrinho}><i className="bi bi-cart-x"></i></div>
+										<div className="btn btn-outline-danger w-25 d-flex align-items-center justify-content-center" onClick={() => removeCarrinho(produtos[j].titulo)}><i className="bi bi-cart-x"></i></div>
 									</li>
 								);
 							}

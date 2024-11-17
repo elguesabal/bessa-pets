@@ -78,7 +78,7 @@ function atualizarCarrinho() {
 									<div className="fw-bold">{produtos[j].titulo}</div>
 									Valor: R${produtos[j].preco.toFixed(2).replace('.', ',')}
 								</a>
-								<div className="btn btn-outline-danger w-25 d-flex align-items-center justify-content-center" onClick={() => console.log("ainda fznd nada")}><i className="bi bi-cart-x"></i></div>
+								<div className="btn btn-outline-danger w-25 d-flex align-items-center justify-content-center" onClick={() => console.log("ainda fznd nada (carrinho gerado pelo botao do card))")}><i className="bi bi-cart-x"></i></div>
 							</li>
 						);
 					}
@@ -108,7 +108,7 @@ export default function Card({ id, imagem, titulo, texto, preco }) {
 
 	return (
 		<>
-			<div className="col-md-4 col-sm-6 mb-3 d-flex justify-content-center">
+			<div className="col-md-4 col-sm-6 mb-3 d-flex justify-content-center"> {/* ADICIONAR UM ID AKI PARA SER CAPTURADO POR removeCarrinho() */}
 				<div className="card mt-3" style={{ width: "18rem" }}>
 					<div className="card-header text-center">{titulo}</div>
 					<img src={imagem} className="card-img-top" alt="Imagem do produto" />
@@ -120,7 +120,7 @@ export default function Card({ id, imagem, titulo, texto, preco }) {
 				</div>
 			</div>
 
-			<div className="modal fade" id={"produto" + id} tabIndex="-1" aria-labelledby="produtoLabel" aria-hidden="true">
+			<div className="modal fade" id={"produto" + id} tabIndex="-1" aria-labelledby="produtoLabel" aria-hidden="true"> {/* O ID id={"produto" + id} DESSA TAG ESTA SENDO LISTADO EM removeCarrinho() */}
 				<div className="modal-dialog modal-dialog-centered">
 					<div className="modal-content">
 						<div className="modal-header">
