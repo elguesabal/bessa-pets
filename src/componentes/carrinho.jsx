@@ -38,20 +38,22 @@ function removeCarrinho() {
     // const children = Array.from(document.getElementById("produtosPage").children); // Obtem os filhos diretos
     const ids = Array.from(document.getElementById("produtosPage").children).map(child => child.id).filter(id => id); // Filtra apenas os IDs existentes
     // console.log("IDs dos filhos diretos:", ids);
-	console.log(window.location.pathname)
+	// console.log(window.location.pathname)
+	// console.log("teste:", document.getElementById("tituloCarrinho0").textContent)
 
-
-
+	let elemento = 0;
 	produtos.forEach((produto, i) => {
-		for (let j = 0; j < produtos.length; j++) {
-			if (window.location.pathname === "/" && produtos[j].home === true && produtos[j].titulo === ) {
-
-				break;
-			}
-		}
-
 		if (window.location.pathname === "/" && produto.home === true) {
-			
+			for (let j = 0; j < ) {
+				if (produto.titulo === document.getElementById("tituloCarrinho" + i).textContent) {
+console.log("removendo carrinho:", document.getElementById("tituloCarrinho" + i).textContent) // AKI EU COMEVEI UM RESULTADO MAS VOU TER Q CONTINUAR MAIS TARDE
+					return ;
+				}
+			}
+		} else if (window.location.pathname === "/pesquisa") {
+
+		} else {
+
 		}
 	});
 
@@ -93,7 +95,7 @@ export default function Carrinho() {
 								return (
 									<li className="list-group-item d-flex bg-light" key={i}>
 										<a href={"/pesquisa?pesquisa=" + produtos[j].titulo} target="_blank" className="w-75">
-											<div className="fw-bold">{produtos[j].titulo}</div>
+											<div className="fw-bold" id={"tituloCarrinho" + i}>{produtos[j].titulo}</div>
 											Valor: R${produtos[j].preco.toFixed(2).replace('.', ',')}
 										</a>
 										<div className="btn btn-outline-danger w-25 d-flex align-items-center justify-content-center" onClick={removeCarrinho}><i className="bi bi-cart-x"></i></div>
