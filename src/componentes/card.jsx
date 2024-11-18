@@ -60,7 +60,7 @@ function atualizarCarrinho() {
 	let carrinho = JSON.parse(decodeURIComponent(new URL(window.location.href).searchParams.get("carrinho")));
 	let subtotal = 0;
 
-	if (!carrinhListaProdutos) carrinhListaProdutos = createRoot(document.getElementById("carrinhListaProdutos"));
+	if (!carrinhListaProdutos) carrinhListaProdutos = createRoot(document.getElementById("carrinhoListaProdutos"));
 	if (!carrinho) {
 		carrinhListaProdutos.render(<></>);
 		document.getElementById("carrinhoSubtotalProdutos").innerText = "Subtotal: R$0,00";
@@ -124,7 +124,7 @@ export default function Card({ id, imagem, titulo, texto, preco }) {
 				<div className="modal-dialog modal-dialog-centered">
 					<div className="modal-content">
 						<div className="modal-header">
-							<h1 className="modal-title fs-5" id={"produtoLabel" + 1}>{titulo}</h1>
+							<h1 className="modal-title fs-5" id={"produtoLabel" + id}>{titulo}</h1>
 							<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 						<div className="modal-body">{texto}</div>

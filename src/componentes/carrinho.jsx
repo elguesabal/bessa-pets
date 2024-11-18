@@ -27,30 +27,44 @@ function carrinhoWhatsapp() {
 	window.open(url, "_blank");
 }
 
-function removeCarrinho(produto) { // "addCarrinho" + id
+function removeCarrinho(produto) {
     const ids = Array.from(document.getElementById("produtosPage").children).map(child => child.id).filter(id => id);
-    console.log("IDs dos filhos diretos:", ids);
+
+    // console.log("IDs dos filhos diretos:", ids);
 	// console.log("teste:", document.getElementById("tituloCarrinho0").textContent)
 	// console.log("aaaaa:", document.getElementById("produto0").firstChild.firstChild.firstChild.firstChild.textContent);
+
+	// console.log("testando:", "10".match(/\d+$/)[0])
 
 	ids.forEach((id) => {
 		// console.log("produto:", document.getElementById("produto" + i).firstChild.firstChild.firstChild.firstChild.textContent);
 
+		let numeroCard = id.match(/\d+$/)[0];
 
 		// console.log(document.getElementById(id).firstChild.firstChild.firstChild.firstChild.textContent)
-		console.log(document.getElementById(id))
-		// if (produto === document.getElementById(id).firstChild.firstChild.firstChild.firstChild.textContent) {
+		// console.log(document.getElementById("produtoLabel" + numeroCard).textContent)
+		// console.log(document.getElementById(id))
+		// console.log(id.match(/\d+$/)[0])
+
+		if (produto === document.getElementById("produtoLabel" + numeroCard).textContent) {
 			// console.log("tem q mudar o card:", id)
 			// document.getElementById(id).classList.remove("btn-outline-danger");
 			// document.getElementById(id).classList.add("btn-outline-success");
 
-
-			// document.getElementById("addCarrinho" + 0).classList.remove("btn-outline-danger");
-			// document.getElementById("addCarrinho" + 0).classList.add("btn-outline-success");
-			// return;
-		// }
+			const element = document.getElementById("addCarrinho" + numeroCard);
+			element.classList.remove("btn-outline-danger");
+			element.classList.add("btn-outline-success");
+			element.classList.remove("bi-cart-x");
+			element.classList.add("bi-cart-plus");
+			return;
+		}
 	});
 
+
+
+	// NO FINAL DE TUDO INTEGRAR COM ESSAS DUAS FUNCOES
+	atualizarHeader(); // IMPORTAR ESSAS FUNCOES VAI SER UMA BUNDA
+	atualizarCarrinho();
 }
 
 export default function Carrinho() {
