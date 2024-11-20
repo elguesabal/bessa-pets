@@ -28,7 +28,7 @@ function carrinhoWhatsapp() {
 	window.open(url, "_blank");
 }
 
-function removeCarrinho(produto) {
+export function removeCarrinho(produto) {
     const ids = Array.from(document.getElementById("produtosPage").children).map(child => child.id).filter(id => id);
 
     // console.log("IDs dos filhos diretos:", ids);

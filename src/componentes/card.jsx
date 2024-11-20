@@ -2,6 +2,7 @@ import { Modal } from "bootstrap";
 import { useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { produtos } from "../produtos.js";
+import { removeCarrinho } from "./carrinho.jsx";
 
 export function addRemmoveCarrinho(id, titulo) {
 	// console.log("id:", id, "\ntitulo:", titulo)
@@ -70,17 +71,37 @@ export function atualizarCarrinho() {
 	}
 	objCarrinho.carrinhoListaProdutos.render(
 		<>
-			{carrinho.map((produto, i) => {
+			{
+				// {carrinho.map((produto, i) => { // ANTIGO JEITO DE RENDEZIRAR O CARRINHO ATRAVES DO CARD
+				// 	for (let j = 0; j < produtos.length; j++) {
+				// 		if (produto === produtos[j].titulo) {
+				// 			subtotal += produtos[j].preco;
+				// 			return (
+				// 				<li className="list-group-item d-flex bg-light" key={i}>
+				// 					<a href={"/pesquisa?pesquisa=" + produtos[j].titulo} target="_blank" className="w-75">
+				// 						<div className="fw-bold">{produtos[j].titulo}</div>
+				// 						Valor: R${produtos[j].preco.toFixed(2).replace('.', ',')}
+				// 					</a>
+				// 					<div className="btn btn-outline-danger w-25 d-flex align-items-center justify-content-center" onClick={() => console.log("i:", i, "produto:", produto)}><i className="bi bi-cart-x"></i></div>
+				// 					{/* <div className="btn btn-outline-danger w-25 d-flex align-items-center justify-content-center" onClick={() => console.log("ainda fznd nada (carrinho gerado pelo botao do card))")}><i className="bi bi-cart-x"></i></div> */}
+				// 					{/* <div className="btn btn-outline-danger w-25 d-flex align-items-center justify-content-center" onClick={() => { addRemmoveCarrinho("addCarrinho" + i, produto), atualizarHeader(), atualizarCarrinho()}}><i className="bi bi-cart-x"></i></div> */}
+				// 				</li>
+				// 			);
+				// 		}
+				// 	}
+				// })}
+			}
+			{(!carrinho) ? <></> : carrinho.map((produto, i) => {
 				for (let j = 0; j < produtos.length; j++) {
 					if (produto === produtos[j].titulo) {
 						subtotal += produtos[j].preco;
 						return (
 							<li className="list-group-item d-flex bg-light" key={i}>
 								<a href={"/pesquisa?pesquisa=" + produtos[j].titulo} target="_blank" className="w-75">
-									<div className="fw-bold">{produtos[j].titulo}</div>
+									<div className="fw-bold" id={"tituloCarrinho" + i}>{produtos[j].titulo}</div>
 									Valor: R${produtos[j].preco.toFixed(2).replace('.', ',')}
 								</a>
-								<div className="btn btn-outline-danger w-25 d-flex align-items-center justify-content-center" onClick={() => console.log("ainda fznd nada (carrinho gerado pelo botao do card))")}><i className="bi bi-cart-x"></i></div>
+								<div className="btn btn-outline-danger w-25 d-flex align-items-center justify-content-center" onClick={() => removeCarrinho(produtos[j].titulo)}><i className="bi bi-cart-x"></i></div>
 							</li>
 						);
 					}
