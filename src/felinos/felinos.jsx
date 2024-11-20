@@ -19,7 +19,7 @@ export default function Felinos() {
 			<Header />
 			<div className="container">
 				<div className="row d-flex justify-content-center" id="produtosPage">
-					{produtos.map((produto, i) => { if (produto.secao === "felinos") return (<Card key={i} id={i} imagem={produto.imagem} titulo={produto.titulo} texto={produto.texto} preco={produto.preco}/>) })}
+					{produtos.map((produto, i) => { if (produto.secao === "felinos") return (<Card key={i} id={i} imagens={produto.imagens} titulo={produto.titulo} texto={produto.texto} preco={produto.preco}/>) })}
 				</div>
 			</div>
 			<Footer />

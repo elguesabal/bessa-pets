@@ -29,9 +29,9 @@ function carrinhoWhatsapp() {
 }
 
 export function removeCarrinho(produto) {
-    const ids = Array.from(document.getElementById("produtosPage").children).map(child => child.id).filter(id => id);
+	const ids = Array.from(document.getElementById("produtosPage").children).map(child => child.id).filter(id => id);
 
-    // console.log("IDs dos filhos diretos:", ids);
+	// console.log("IDs dos filhos diretos:", ids);
 	// console.log("teste:", document.getElementById("tituloCarrinho0").textContent)
 	// console.log("aaaaa:", document.getElementById("produto0").firstChild.firstChild.firstChild.firstChild.textContent);
 
@@ -61,7 +61,7 @@ export function removeCarrinho(produto) {
 
 
 			// idCard = "addCarrinho" + numeroCard;
-			
+
 			addRemmoveCarrinho("addCarrinho" + numeroCard, produto);
 			atualizarHeader();
 			atualizarCarrinho();
@@ -76,6 +76,18 @@ export function removeCarrinho(produto) {
 	// NO FINAL DE TUDO INTEGRAR COM ESSAS DUAS FUNCOES
 	// atualizarHeader();
 	// atualizarCarrinho();
+}
+
+export function atualizarProdutosCarrinho(i, j) {
+	return (
+		<li className="list-group-item d-flex bg-light" key={i}>
+			<a href={"/pesquisa?pesquisa=" + produtos[j].titulo} target="_blank" className="w-75">
+				<div className="fw-bold" id={"tituloCarrinho" + i}>{produtos[j].titulo}</div>
+				Valor: R${produtos[j].preco.toFixed(2).replace('.', ',')}
+			</a>
+			<div className="btn btn-outline-danger w-25 d-flex align-items-center justify-content-center" onClick={() => removeCarrinho(produtos[j].titulo)}><i className="bi bi-cart-x"></i></div>
+		</li>
+	);
 }
 
 export default function Carrinho() {
@@ -99,13 +111,14 @@ export default function Carrinho() {
 							if (produto === produtos[j].titulo) {
 								subtotal += produtos[j].preco;
 								return (
-									<li className="list-group-item d-flex bg-light" key={i}>
-										<a href={"/pesquisa?pesquisa=" + produtos[j].titulo} target="_blank" className="w-75">
-											<div className="fw-bold" id={"tituloCarrinho" + i}>{produtos[j].titulo}</div>
-											Valor: R${produtos[j].preco.toFixed(2).replace('.', ',')}
-										</a>
-										<div className="btn btn-outline-danger w-25 d-flex align-items-center justify-content-center" onClick={() => removeCarrinho(produtos[j].titulo)}><i className="bi bi-cart-x"></i></div>
-									</li>
+									// <li className="list-group-item d-flex bg-light" key={i}>
+									// 	<a href={"/pesquisa?pesquisa=" + produtos[j].titulo} target="_blank" className="w-75">
+									// 		<div className="fw-bold" id={"tituloCarrinho" + i}>{produtos[j].titulo}</div>
+									// 		Valor: R${produtos[j].preco.toFixed(2).replace('.', ',')}
+									// 	</a>
+									// 	<div className="btn btn-outline-danger w-25 d-flex align-items-center justify-content-center" onClick={() => removeCarrinho(produtos[j].titulo)}><i className="bi bi-cart-x"></i></div>
+									// </li>
+									atualizarProdutosCarrinho(i, j)
 								);
 							}
 						}
