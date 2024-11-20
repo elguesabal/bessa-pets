@@ -1,4 +1,5 @@
 import { produtos } from "../produtos.js";
+import { addRemmoveCarrinho, atualizarHeader, objCarrinho, atualizarCarrinho } from "./card.jsx";
 
 function carrinhoWhatsapp() {
 	let carrinho = JSON.parse(decodeURIComponent(new URL(window.location.href).searchParams.get("carrinho")));
@@ -36,6 +37,8 @@ function removeCarrinho(produto) {
 
 	// console.log("testando:", "10".match(/\d+$/)[0])
 
+	// let idCard;
+	// let tituloCard;
 	ids.forEach((id) => {
 		// console.log("produto:", document.getElementById("produto" + i).firstChild.firstChild.firstChild.firstChild.textContent);
 
@@ -48,23 +51,31 @@ function removeCarrinho(produto) {
 
 		if (produto === document.getElementById("produtoLabel" + numeroCard).textContent) {
 			// console.log("tem q mudar o card:", id)
-			// document.getElementById(id).classList.remove("btn-outline-danger");
-			// document.getElementById(id).classList.add("btn-outline-success");
 
-			const element = document.getElementById("addCarrinho" + numeroCard);
-			element.classList.remove("btn-outline-danger");
-			element.classList.add("btn-outline-success");
-			element.classList.remove("bi-cart-x");
-			element.classList.add("bi-cart-plus");
+
+			// const element = document.getElementById("addCarrinho" + numeroCard);
+			// element.classList.remove("btn-outline-danger");
+			// element.classList.add("btn-outline-success");
+			// element.classList.remove("bi-cart-x");
+			// element.classList.add("bi-cart-plus");
+
+
+			// idCard = "addCarrinho" + numeroCard;
+			
+			addRemmoveCarrinho("addCarrinho" + numeroCard, produto);
+			atualizarHeader();
+			atualizarCarrinho();
 			return;
 		}
 	});
 
 
+	// console.log(objCarrinho)
+
 
 	// NO FINAL DE TUDO INTEGRAR COM ESSAS DUAS FUNCOES
-	atualizarHeader(); // IMPORTAR ESSAS FUNCOES VAI SER UMA BUNDA
-	atualizarCarrinho();
+	// atualizarHeader();
+	// atualizarCarrinho();
 }
 
 export default function Carrinho() {

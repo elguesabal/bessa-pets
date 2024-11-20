@@ -3,7 +3,8 @@ import { useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { produtos } from "../produtos.js";
 
-function addRemmoveCarrinho(id, titulo) {
+export function addRemmoveCarrinho(id, titulo) {
+	// console.log("id:", id, "\ntitulo:", titulo)
 	const element = document.getElementById(id);
 	let url = new URL(window.location.href);
 	let carrinho = [];
@@ -47,7 +48,7 @@ function classCarrinho(titulo) {
 	return ("btn " + ((carrinho.includes(titulo)) ? "btn-outline-danger" : "btn-outline-success") + " bi " + ((carrinho.includes(titulo)) ? "bi-cart-x" : "bi-cart-plus"))
 }
 
-function atualizarHeader() {
+export function atualizarHeader() {
 	document.getElementById("home").href = window.location.origin + window.location.search
 	// document.getElementById("caes").href = window.location.origin + "/caes" + window.location.search
 	document.getElementById("felinos").href = window.location.origin + "/felinos" + window.location.search
@@ -55,18 +56,19 @@ function atualizarHeader() {
 	// document.getElementById("roedores").href = window.location.origin + "/roedores" + window.location.search
 }
 
-let carrinhListaProdutos = null;
-function atualizarCarrinho() {
+// let carrinhListaProdutos = null;
+export const objCarrinho = { carrinhoListaProdutos: null };
+export function atualizarCarrinho() {
 	let carrinho = JSON.parse(decodeURIComponent(new URL(window.location.href).searchParams.get("carrinho")));
 	let subtotal = 0;
 
-	if (!carrinhListaProdutos) carrinhListaProdutos = createRoot(document.getElementById("carrinhoListaProdutos"));
+	if (!objCarrinho.carrinhoListaProdutos) objCarrinho.carrinhoListaProdutos = createRoot(document.getElementById("carrinhoListaProdutos"));
 	if (!carrinho) {
-		carrinhListaProdutos.render(<></>);
+		objCarrinho.carrinhoListaProdutos.render(<></>);
 		document.getElementById("carrinhoSubtotalProdutos").innerText = "Subtotal: R$0,00";
 		return ;
 	}
-	carrinhListaProdutos.render(
+	objCarrinho.carrinhoListaProdutos.render(
 		<>
 			{carrinho.map((produto, i) => {
 				for (let j = 0; j < produtos.length; j++) {
