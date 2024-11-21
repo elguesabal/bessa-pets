@@ -1,4 +1,5 @@
 import { produtos } from "../produtos.js";
+import Carrinho from "../componentes/carrinho.jsx";
 import Header from "../componentes/header.jsx";
 import Card from "../componentes/card.jsx";
 import Footer from "../componentes/footer.jsx";
@@ -18,12 +19,13 @@ export default function Pesquisa() {
 
 	return (
 		<>
+			<Carrinho />
 			<Header />
 			<div className="container">
-				<div className="row d-flex justify-content-center">
+				<div className="row d-flex justify-content-center" id="produtosPage">
 					{produtos.map((produto, i) => {
 						if (produto.titulo.toLocaleLowerCase().match(pesquisa.toLocaleLowerCase())) {
-							return (<Card key={i} id={i} imagem={produto.imagem} titulo={produto.titulo} texto={produto.texto} preco={produto.preco}/>);
+							return (<Card key={i} id={i} imagens={produto.imagens} titulo={produto.titulo} texto={produto.texto} preco={produto.preco}/>);
 						}
 					})}
 				</div>

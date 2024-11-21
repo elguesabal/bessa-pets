@@ -21,19 +21,19 @@ export default function Header() {
 				<div className="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul className="navbar-nav me-auto mb-2 mb-lg-0">
 						<li className="nav-item">
-							<a className="nav-link active" id="home" aria-current="page" href="/">Pagina inicial</a>
+							<a className="nav-link active" id="home" aria-current="page" href={"/" + window.location.search}>Pagina inicial</a>
 						</li>
 						<li className="nav-item">
-							<a className="nav-link active" aria-current="page" href="#">Cães</a>
+							<a className="nav-link active" aria-current="page" href={"/caes" + window.location.search}>Cães</a>
 						</li>
 						<li className="nav-item">
-							<a className="nav-link active" id="felinos" aria-current="page" href="/felinos">Felinos</a>
+							<a className="nav-link active" id="felinos" aria-current="page" href={"/felinos" + window.location.search}>Felinos</a>
 						</li>
 						<li className="nav-item">
-							<a className="nav-link active" aria-current="page" href="#">Peixes</a>
+							<a className="nav-link active" aria-current="page" href={"/peixes" + window.location.search}>Peixes</a>
 						</li>
 						<li className="nav-item">
-							<a className="nav-link active" aria-current="page" href="#">Roedores</a>
+							<a className="nav-link active" aria-current="page" href={"/roedores" + window.location.search}>Roedores</a>
 						</li>
 					</ul>
 					<form className="d-flex" onSubmit={pesquisa}>

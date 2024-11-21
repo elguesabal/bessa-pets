@@ -5,7 +5,6 @@ import Header from "../componentes/header.jsx";
 import Promocoes from "../componentes/promocoes.jsx";
 import Card from "../componentes/card.jsx";
 import Footer from "../componentes/footer.jsx";
-
 import { produtos } from "../produtos.js";
 
 export default function Home() {
