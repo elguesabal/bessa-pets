@@ -6,6 +6,7 @@ import { atualizarProdutosCarrinho } from "./carrinho.jsx";
 
 export function addRemmoveCarrinho(id, titulo) {
 	const element = document.getElementById(id);
+	const nProdutos = document.getElementById("nProdutos");
 	let url = new URL(window.location.href);
 	let carrinho = [];
 
@@ -14,6 +15,7 @@ export function addRemmoveCarrinho(id, titulo) {
 		element.classList.add("btn-outline-danger");
 		element.classList.remove("bi-cart-plus");
 		element.classList.add("bi-cart-x");
+		++nProdutos.textContent;
 
 		carrinho = decodeURIComponent(url.searchParams.get("carrinho"));
 		if (!carrinho || carrinho == "null") {
@@ -28,6 +30,7 @@ export function addRemmoveCarrinho(id, titulo) {
 		element.classList.add("btn-outline-success");
 		element.classList.remove("bi-cart-x");
 		element.classList.add("bi-cart-plus");
+		(nProdutos.textContent === "1") ? nProdutos.textContent = null : --nProdutos.textContent;
 
 		carrinho = JSON.parse(decodeURIComponent(url.searchParams.get("carrinho")));
 		carrinho.splice(carrinho.indexOf(titulo), 1);

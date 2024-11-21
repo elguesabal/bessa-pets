@@ -1,5 +1,5 @@
 import { produtos } from "../produtos.js";
-import { addRemmoveCarrinho, atualizarHeader, objCarrinho, atualizarCarrinho } from "./card.jsx";
+import { addRemmoveCarrinho, atualizarHeader, atualizarCarrinho } from "./card.jsx";
 
 function carrinhoWhatsapp() {
 	let carrinho = JSON.parse(decodeURIComponent(new URL(window.location.href).searchParams.get("carrinho")));
@@ -79,6 +79,8 @@ export function removeCarrinho(produto) {
 }
 
 export function atualizarProdutosCarrinho(i, j) {
+	// document.getElementById("nProdutos").textContent = Number(document.getElementById("nProdutos").textContent) - 1;
+	// console.log(document.getElementById("nProdutos").textContent)
 	return (
 		<li className="list-group-item d-flex bg-light" key={i}>
 			<a href={"/pesquisa?pesquisa=" + produtos[j].titulo} target="_blank" className="w-75">
@@ -98,6 +100,7 @@ export default function Carrinho() {
 		<>
 			<div id="carrinho" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
 				<i className="bi bi-cart-check"></i>
+				<span className="position-absolute top-0 start-25 translate-middle badge rounded-pill bg-danger" id="nProdutos">{(carrinho) ? carrinho.length : null}</span>
 			</div>
 
 			<div className="offcanvas offcanvas-end" tabIndex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
@@ -110,15 +113,7 @@ export default function Carrinho() {
 						for (let j = 0; j < produtos.length; j++) {
 							if (produto === produtos[j].titulo) {
 								subtotal += produtos[j].preco;
-								return (
-									// <li className="list-group-item d-flex bg-light" key={i}>
-									// 	<a href={"/pesquisa?pesquisa=" + produtos[j].titulo} target="_blank" className="w-75">
-									// 		<div className="fw-bold" id={"tituloCarrinho" + i}>{produtos[j].titulo}</div>
-									// 		Valor: R${produtos[j].preco.toFixed(2).replace('.', ',')}
-									// 	</a>
-									// 	<div className="btn btn-outline-danger w-25 d-flex align-items-center justify-content-center" onClick={() => removeCarrinho(produtos[j].titulo)}><i className="bi bi-cart-x"></i></div>
-									// </li>
-									atualizarProdutosCarrinho(i, j)
+								return (									atualizarProdutosCarrinho(i, j)
 								);
 							}
 						}
