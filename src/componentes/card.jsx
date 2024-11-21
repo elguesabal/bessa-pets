@@ -52,14 +52,13 @@ function classCarrinho(titulo) {
 }
 
 export function atualizarHeader() {
-	document.getElementById("home").href = window.location.origin + window.location.search
-	// document.getElementById("caes").href = window.location.origin + "/caes" + window.location.search
-	document.getElementById("felinos").href = window.location.origin + "/felinos" + window.location.search
-	// document.getElementById("peixes").href = window.location.origin + "/peixes" + window.location.search
-	// document.getElementById("roedores").href = window.location.origin + "/roedores" + window.location.search
+	document.getElementById("home").href = window.location.origin + window.location.search;
+	// document.getElementById("caes").href = window.location.origin + "/caes" + window.location.search;
+	document.getElementById("felinos").href = window.location.origin + "/felinos" + window.location.search;
+	// document.getElementById("peixes").href = window.location.origin + "/peixes" + window.location.search;
+	// document.getElementById("roedores").href = window.location.origin + "/roedores" + window.location.search;
 }
 
-// let carrinhListaProdutos = null;
 export const objCarrinho = { carrinhoListaProdutos: null };
 export function atualizarCarrinho() {
 	let carrinho = JSON.parse(decodeURIComponent(new URL(window.location.href).searchParams.get("carrinho")));
@@ -73,40 +72,11 @@ export function atualizarCarrinho() {
 	}
 	objCarrinho.carrinhoListaProdutos.render(
 		<>
-			{
-				// {carrinho.map((produto, i) => { // ANTIGO JEITO DE RENDEZIRAR O CARRINHO ATRAVES DO CARD
-				// 	for (let j = 0; j < produtos.length; j++) {
-				// 		if (produto === produtos[j].titulo) {
-				// 			subtotal += produtos[j].preco;
-				// 			return (
-				// 				<li className="list-group-item d-flex bg-light" key={i}>
-				// 					<a href={"/pesquisa?pesquisa=" + produtos[j].titulo} target="_blank" className="w-75">
-				// 						<div className="fw-bold">{produtos[j].titulo}</div>
-				// 						Valor: R${produtos[j].preco.toFixed(2).replace('.', ',')}
-				// 					</a>
-				// 					<div className="btn btn-outline-danger w-25 d-flex align-items-center justify-content-center" onClick={() => console.log("i:", i, "produto:", produto)}><i className="bi bi-cart-x"></i></div>
-				// 					{/* <div className="btn btn-outline-danger w-25 d-flex align-items-center justify-content-center" onClick={() => console.log("ainda fznd nada (carrinho gerado pelo botao do card))")}><i className="bi bi-cart-x"></i></div> */}
-				// 					{/* <div className="btn btn-outline-danger w-25 d-flex align-items-center justify-content-center" onClick={() => { addRemmoveCarrinho("addCarrinho" + i, produto), atualizarHeader(), atualizarCarrinho()}}><i className="bi bi-cart-x"></i></div> */}
-				// 				</li>
-				// 			);
-				// 		}
-				// 	}
-				// })}
-			}
 			{(!carrinho) ? <></> : carrinho.map((produto, i) => {
 				for (let j = 0; j < produtos.length; j++) {
 					if (produto === produtos[j].titulo) {
 						subtotal += produtos[j].preco;
-						return (
-							// <li className="list-group-item d-flex bg-light" key={i}>
-							// 	<a href={"/pesquisa?pesquisa=" + produtos[j].titulo} target="_blank" className="w-75">
-							// 		<div className="fw-bold" id={"tituloCarrinho" + i}>{produtos[j].titulo}</div>
-							// 		Valor: R${produtos[j].preco.toFixed(2).replace('.', ',')}
-							// 	</a>
-							// 	<div className="btn btn-outline-danger w-25 d-flex align-items-center justify-content-center" onClick={() => removeCarrinho(produtos[j].titulo)}><i className="bi bi-cart-x"></i></div>
-							// </li>
-							atualizarProdutosCarrinho(i, j)
-						);
+						return (atualizarProdutosCarrinho(i, j));
 					}
 				}
 			})}

@@ -31,56 +31,19 @@ function carrinhoWhatsapp() {
 export function removeCarrinho(produto) {
 	const ids = Array.from(document.getElementById("produtosPage").children).map(child => child.id).filter(id => id);
 
-	// console.log("IDs dos filhos diretos:", ids);
-	// console.log("teste:", document.getElementById("tituloCarrinho0").textContent)
-	// console.log("aaaaa:", document.getElementById("produto0").firstChild.firstChild.firstChild.firstChild.textContent);
-
-	// console.log("testando:", "10".match(/\d+$/)[0])
-
-	// let idCard;
-	// let tituloCard;
 	ids.forEach((id) => {
-		// console.log("produto:", document.getElementById("produto" + i).firstChild.firstChild.firstChild.firstChild.textContent);
-
 		let numeroCard = id.match(/\d+$/)[0];
 
-		// console.log(document.getElementById(id).firstChild.firstChild.firstChild.firstChild.textContent)
-		// console.log(document.getElementById("produtoLabel" + numeroCard).textContent)
-		// console.log(document.getElementById(id))
-		// console.log(id.match(/\d+$/)[0])
-
 		if (produto === document.getElementById("produtoLabel" + numeroCard).textContent) {
-			// console.log("tem q mudar o card:", id)
-
-
-			// const element = document.getElementById("addCarrinho" + numeroCard);
-			// element.classList.remove("btn-outline-danger");
-			// element.classList.add("btn-outline-success");
-			// element.classList.remove("bi-cart-x");
-			// element.classList.add("bi-cart-plus");
-
-
-			// idCard = "addCarrinho" + numeroCard;
-
 			addRemmoveCarrinho("addCarrinho" + numeroCard, produto);
 			atualizarHeader();
 			atualizarCarrinho();
 			return;
 		}
 	});
-
-
-	// console.log(objCarrinho)
-
-
-	// NO FINAL DE TUDO INTEGRAR COM ESSAS DUAS FUNCOES
-	// atualizarHeader();
-	// atualizarCarrinho();
 }
 
 export function atualizarProdutosCarrinho(i, j) {
-	// document.getElementById("nProdutos").textContent = Number(document.getElementById("nProdutos").textContent) - 1;
-	// console.log(document.getElementById("nProdutos").textContent)
 	return (
 		<li className="list-group-item d-flex bg-light" key={i}>
 			<a href={"/pesquisa?pesquisa=" + produtos[j].titulo} target="_blank" className="w-75">
@@ -113,8 +76,7 @@ export default function Carrinho() {
 						for (let j = 0; j < produtos.length; j++) {
 							if (produto === produtos[j].titulo) {
 								subtotal += produtos[j].preco;
-								return (									atualizarProdutosCarrinho(i, j)
-								);
+								return (atualizarProdutosCarrinho(i, j));
 							}
 						}
 					})}
